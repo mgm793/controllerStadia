@@ -1,0 +1,29 @@
+{
+  "name": "stadiacontroller",
+  "version": "1.0.0",
+  "description": "Library to use Stadia controller in an easy way on your website.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepublish": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mgm793/controllerStadia.git"
+  },
+  "keywords": [
+    "stadia",
+    "controller"
+  ],
+  "author": "Marc Garcia i Mullon (mgm793)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mgm793/controllerStadia/issues"
+  },
+  "homepage": "https://github.com/mgm793/controllerStadia#readme",
+  "devDependencies": {
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  }
+}
