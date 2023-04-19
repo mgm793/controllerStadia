@@ -2,7 +2,10 @@ import { StadiaButtons, keyMapping } from "./keyMapping";
 
 export class StadiaController {
   private controllerID : number | undefined;
-  constructor(private callbacks: Partial<Record<StadiaButtons, (value?: number | number[]) => void>>){
+  constructor(private callbacks: Partial<Record<StadiaButtons, (
+    value?: number | number[] | {
+    name: StadiaButtons, value: number | number[]
+  }) => void>>){
     if(!('getGamepads' in navigator)){
       console.error('STADIA CONTROLLER: Your navigator does not accept controllers');
     }
@@ -25,22 +28,29 @@ export class StadiaController {
             return;
           }
         this.callbacks[name]?.(button.value);
+        this.callbacks.all?.({name, value: button.value});
       }
     }
   }
 
-  private checkStiks(sticks: readonly number[]){
+  private checkSticks(sticks: readonly number[]){
     const [ leftX, leftY, rightX, rightY ] = sticks;
     if(!leftX && !leftY && !rightX && !rightY) return;
-    if(leftX || leftY) this.callbacks.leftStick?.([leftX, leftY]);
-    if(rightX || rightY) this.callbacks.rightStick?.([rightX, rightY]);
+    if(leftX || leftY) {
+      this.callbacks.leftStick?.([leftX, leftY]);
+      this.callbacks.all?.({name: 'leftStick', value: [leftX, leftY]});
+    }
+    if(rightX || rightY) {
+      this.callbacks.rightStick?.([rightX, rightY]);
+      this.callbacks.all?.({name: 'rightStick', value: [rightX, rightY]});
+    }
   }
 
   private eventHandler = () => {
     if(this.controllerID !== undefined){
       const controller = navigator.getGamepads()[this.controllerID];
       if(controller?.buttons) this.checkButtons(controller.buttons);
-      if(controller?.axes) this.checkStiks(controller.axes);
+      if(controller?.axes) this.checkSticks(controller.axes);
     }
     requestAnimationFrame(this.eventHandler);
   }

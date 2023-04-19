@@ -2,7 +2,10 @@ import { StadiaController } from 'stadiacontroller';
 
 
 new StadiaController({
-  A: () => {
-    console.log('A');
+  A: (value) => {
+    console.log('A', value);
+  },
+  all: (value) => {
+    console.log(value)
   }
 })

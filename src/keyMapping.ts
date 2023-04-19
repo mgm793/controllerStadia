@@ -3,7 +3,7 @@ export type StadiaButtons =
 'L1' | 'R1' | 'L2' | 'R2' |
 'leftArrow' | 'rightArrow' | 'upArrow' | 'downArrow' | 
 'options' | 'menu' | 'capture' | 'assistant' | 'stadiaButton' |
-'L3' | 'R3' | 'leftStick' | 'rightStick'; 
+'L3' | 'R3' | 'leftStick' | 'rightStick' | 'all'; 
 
 export const keyMapping: Map<number, StadiaButtons> = new Map([
   [0 ,'A'],
