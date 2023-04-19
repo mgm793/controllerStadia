@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/mgm793/controllerStadia#readme",
   "devDependencies": {
+    "@types/w3c-web-usb": "^1.0.6",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.4"
   }
